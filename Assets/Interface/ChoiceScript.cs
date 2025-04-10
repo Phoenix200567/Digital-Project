@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,8 @@ public class DialogManager : MonoBehaviour
     // 标记是否等待点击Panel以关闭对话框（仅在“Yes”按钮点击后生效）
    [Header("Post Content 移动目标")]
     public RectTransform postContent;    // post_content 的 RectTransform
+    public GameObject Post;
+    public GameObject newPost;
     public float moveDistance = 500f;    // 移动距离（根据实际需求调整）
     public float moveDuration = 1f;      // 移动时间（秒）
 
@@ -45,8 +48,11 @@ public class DialogManager : MonoBehaviour
     // 点击“Yes”按钮后：更新文本并启用点击Panel关闭功能
     void OnYesClicked()
     {
+        Destroy(Post);
         dialogText.text = "Post remove successful";
+        
         waitingForPanelClick = true;
+        
     }
 
     // 点击“No”按钮后：直接关闭对话框
